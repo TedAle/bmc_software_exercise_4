@@ -5,7 +5,7 @@ BMC Software - Exercise 4
 To launch the program use the class 'atedeschi.bmc.exercise_4.Main', there is also a JUnit 'atedeschi.bmc.exercise_4.MainTest' class useful to check the outcome of the program.
 
 
-##THE SOLUTION
+## THE SOLUTION
 I have transformed the class TransactionProcess into a Runnable class with Thread so the Main thread can start multiple instance of TransactionProcess without wait for the end of the work of each
 
 After launch of all TransactionProcess instances the Main thread waits for the end of their works, meanwhile each instance TransactionProcess has a 'notifyAll()' command to awake the Main thread from its 'wait()'.

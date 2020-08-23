@@ -9,5 +9,7 @@ public class Constants {
 	
 	/** Score for each transaction ended OK */
 	public static final Double OK_TRANSACTION_SCORE = 100.0d;
-
+	
+	/** Millis in sec */
+	public static final double MILLIS_IN_SEC = 1000.0;
 }

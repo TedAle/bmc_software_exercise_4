@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import atedeschi.bmc.exercise_4.exceptions.ProcessStillRunningException;
 import atedeschi.bmc.exercise_4.utils.Constants;
 
 public class MainTest {
@@ -28,7 +29,7 @@ public class MainTest {
 		
 		Double result = null;
 		try {
-			result = atedeschi.bmc.exercise_4.Main.doTransitions();
+			result = new atedeschi.bmc.exercise_4.Main().doTransitions();
 		} catch (ProcessStillRunningException e) {
 			logger.error(e.getMessage(), e);
 			Assert.fail(e.getMessage());

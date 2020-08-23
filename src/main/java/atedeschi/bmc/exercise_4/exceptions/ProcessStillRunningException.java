@@ -1,4 +1,4 @@
-package atedeschi.bmc.exercise_4;
+package atedeschi.bmc.exercise_4.exceptions;
 
 public class ProcessStillRunningException extends Exception{
 

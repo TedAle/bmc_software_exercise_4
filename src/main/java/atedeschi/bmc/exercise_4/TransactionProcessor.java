@@ -16,20 +16,22 @@ public class TransactionProcessor implements Runnable {
 	private Thread t;
 
 	private final int i;
-	/** Refecerent to the status of transactions Synchronized Map */
+	/** Reference to the synchronizedMap transactionsStatus */
 	private Map<Integer, Status> transactionStatus;
 	private final int numTransactions;
 	private double result;
-	/** The status of transactions */
+	/** Reference to the synchronizedList list of all results returned from TransactionProcessor threads */
 	private List<Double> resultList;
+	private Main main;
 
 	public TransactionProcessor(final int i, Map<Integer, Status> transactionStatus, final int numTransactions,
-			final List<Double> resultList) {
+			final List<Double> resultList, Main main) {
 		this.i = i;
 		this.transactionStatus = transactionStatus;
 		this.numTransactions = numTransactions;
 		this.result = 0.0;
 		this.resultList = resultList;
+		this.main = main;
 	}
 
 	/**
@@ -79,6 +81,9 @@ public class TransactionProcessor implements Runnable {
 			logger.warn("Transaction failed");
 			transactionStatus.put(i, Status.FAILURE);
 			Thread.currentThread().interrupt();
+		}
+		synchronized (main) {
+			main.notifyAll();
 		}
 		resultList.add(Double.valueOf(result));
 		logger.info("Thread {} ended after {}",i,(System.currentTimeMillis() - startTime));

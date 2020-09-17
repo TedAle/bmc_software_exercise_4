@@ -83,7 +83,7 @@ public class TransactionProcessor implements Runnable {
 			Thread.currentThread().interrupt();
 		}
 		synchronized (main) {
-			main.notifyAll();
+			main.notify();
 		}
 		resultList.add(Double.valueOf(result));
 		logger.info("Thread {} ended after {}",i,(System.currentTimeMillis() - startTime));
